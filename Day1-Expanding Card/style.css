@@ -1,0 +1,70 @@
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Agdasima&display=swap');
+
+* {
+    box-sizing: border-box;/*让所有元素在调整border等边界时尺寸不会变化*/
+}
+
+body {
+    display: flex;
+    font-family: 'Agdasima', sans-serif;
+    align-items: center;
+    justify-content: center;  
+    height: 100vh; 
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    width: 150vh;
+}
+
+.panel {
+    background-size: auto 100%; /*背景图像的宽度将自动调整，并且高度将保持为其 父元素 的 100%。*/
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    flex: 0.5; /*子元素为absolute必须定义flex或者宽高大小，否则父元素会坍缩为0 ，即从ui界面消失*/
+    margin: 10px;
+    position: relative;
+    transition: flex 0.7s ease-in;
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute; 
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+}
+
+.panel.active {
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    transition: opacity 0.45s ease-in 0.6s;
+}
+
+/*媒体查询（Media Query）是一种CSS功能，可以用于响应式设计，根据设备的宽度调整布局和显示内容：
+用于根据不同的媒体设备或特定的视窗特征应用不同的CSS样式。它可以根据设备的特性（如视窗宽度、高度、设备类型、分辨率等）来应用特定的样式规则。
+媒体查询允许开发人员根据设备的属性选择性地应用样式，以创建响应式设计和适应不同的设备和屏幕尺寸：*/
+@media (max-width : 480px) { /*视窗宽度不超过 480 像素时应用下面的样式规则。*/
+    .container { /*将container class里的内容的宽度设置为视窗宽度的 100%。这意味着 .container 将占据整个视窗的宽度。*/
+        width: 100vw;
+    }
+
+    /*这是选择 .panel 类的第 4 和第 5 个元素的伪类选择器。*/
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5) {
+        display: none;
+    }
+}
